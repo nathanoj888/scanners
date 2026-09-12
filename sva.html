@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="stylesheet" href="mobile-scanner-fix.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#07111f">
@@ -73,5 +74,6 @@ function escapeHtml(s){return String(s).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':
 $('startBtn').onclick=startCamera;$('stopBtn').onclick=stopMedia;$('snapshotBtn').onclick=capture;$('reportBtn').onclick=exportReport;$('clearBtn').onclick=()=>{findings.clear();document.querySelectorAll('#checklist input').forEach(c=>c.checked=false);renderFindings();toast('Findings cleared')};document.querySelectorAll('#checklist input').forEach(c=>c.onchange=syncManual);
 $('videoFile').onchange=async e=>{const f=e.target.files[0];if(!f)return;stopMedia();video.src=URL.createObjectURL(f);await video.play();beginScan()};video.onended=()=>{scanning=false;$('videoWrap').classList.remove('live');$('startBtn').disabled=false;$('stopBtn').disabled=true};window.addEventListener('resize',sizeCanvas);window.addEventListener('beforeunload',stopMedia);loadModel();renderFindings();
 </script>
+<script src="mobile-scanner-fix.js"></script>
 </body>
 </html>
